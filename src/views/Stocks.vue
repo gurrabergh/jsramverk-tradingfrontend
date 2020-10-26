@@ -3,7 +3,7 @@
 <h1>Marknad</h1>
 <v-card dark>
 <v-card-title>Aktielista</v-card-title>
- <v-simple-table class="table" dark>
+ <v-simple-table class="table" dark dense>
     <template v-slot:default>
       <thead>
         <tr>
@@ -23,13 +23,20 @@
           v-for="stocks in market"
           :key="stocks.name"
         >
-          <td>{{ stocks.name }}</td>
-          <td>{{ stocks.price }}kr</td>
-          <td><v-btn @click="$router.push('stocks/purchase/' + stocks.name)" primary small color="orange">Köp</v-btn></td>
+          <td class="text-left">{{ stocks.name }}</td>
+          <td class="text-left">{{ stocks.price }}kr</td>
+          <td class="text-left"><v-btn @click="$router.push('stocks/purchase/' + stocks.name)" primary small color="orange">Köp</v-btn></td>
         </tr>
       </tbody>
     </template>
   </v-simple-table>
+    <v-btn color="gray"
+              dark
+              x-large
+              @click="$router.push('account')" 
+            >
+              Tillbaka
+            </v-btn>
   </v-card>
   <h1>Grafer</h1>
   <div id="graphs"></div>
@@ -53,7 +60,7 @@ function slugify(text) {
 export default {
   data() {
     return {
-      socket: io.connect("http:/trading-api.gustavbergh.me"),
+      socket: io.connect("https://trading-api.gustavbergh.me"),
       texts: '',
       saldo: 0,
       market: stockList.stocks
@@ -64,12 +71,8 @@ export default {
     let first = true;
     let graphContainer = document.getElementById("graphs");
     this.socket.on('connect', () => {
-    console.log("Connected");
     });
 
-    this.socket.on('disconnect', () => {
-        console.log("Disconnected");
-    });
     this.socket.on('stocks', (stocks) => {
       stockList.stocks = stocks
       this.market = stockList.stocks
@@ -88,15 +91,15 @@ export default {
 
                 let graph = new Rickshaw.Graph({
                     element: graphElement,
-                    width: "500",
-                    height: "300",
+                    width: 500,
+                    height: 300,
                     renderer: "line",
                     series: new Rickshaw.Series.FixedDuration([{
                         name: stock.name,
                         color: palette.color(),
                     }], undefined, {
                         timeInterval: 5000,
-                        maxDataPoints: 1000,
+                        maxDataPoints: 400,
                         timeBase: new Date().getTime() / 1000
                     })
                 });
@@ -132,6 +135,7 @@ export default {
         stocks.map((stock) => {
             let slug = slugify(stock.name);
             let data = {};
+            
             data[stock.name] = parseFloat(stock.price);
             graphs[slug].graph.series.addData(data);
             graphs[slug].graph.render();
@@ -144,7 +148,13 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+
+#app {
+  width: 90%;
+  margin: auto;
+}
+
 .v-card {
   width: 75%;
   margin: auto;
@@ -157,13 +167,13 @@ td {
   text-align: left;
 }
 
-.v-btn {
+button {
   margin-top: 0;
 }
 
-.graphs {
+.graphs div {
   padding: 2rem;
-  margin: 2rem;
+  margin: auto;
   width: 80%;
 }
 </style>

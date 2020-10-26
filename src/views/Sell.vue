@@ -12,7 +12,13 @@
   readonly
   label="Summa"  type="number"
   v-model="sum"
-/><v-btn v-on:click="purchase" primary large block>Sälj</v-btn></v-form>
+/><v-btn v-on:click="purchase" primary large block>Sälj</v-btn><v-btn color="gray"
+              dark
+              x-large
+              @click="$router.push('/account')" 
+            >
+              Tillbaka
+            </v-btn></v-form>
 
 </v-app>
 </template>
@@ -60,7 +66,7 @@ export default {
         portfolio: acc.portfolio,
         balance: balance
         }
-        fetch('http://trading-api.gustavbergh.me/purchase', {
+        fetch('https://trading-api.gustavbergh.me/purchase', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',

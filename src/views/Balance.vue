@@ -7,7 +7,13 @@
   single-line
   type="number"
   label="Ange summa"
-/><v-btn v-on:click="submit" primary large block>Sätt in</v-btn></v-form>
+/><v-btn v-on:click="submit" primary large block>Sätt in</v-btn><v-btn color="gray"
+              dark
+              x-large
+              @click="$router.push('/account')" 
+            >
+              Tillbaka
+            </v-btn></v-form>
 
 </v-app>
 </template>
@@ -26,7 +32,7 @@ export default {
         balance: this.balance,
         id: acc.acc
       }
-      fetch('http://localhost:1337/balance', {
+      fetch('https://trading-api.gustavbergh.me/balance', {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',

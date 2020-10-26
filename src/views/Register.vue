@@ -2,7 +2,7 @@
 <v-app>
   <h1>Registrera en ny användare</h1>
  <v-form>
-  <v-text-field name="Username" label="E-mail" v-model="usr"></v-text-field>
+  <v-text-field name="Username" label="Användarnamn" v-model="usr"></v-text-field>
             <v-text-field name="Password" label="Lösenord" type="password" v-model="psw"></v-text-field>
               <v-btn v-on:click="submitted" primary large block>Registrera</v-btn></v-form>
 </v-app>
@@ -21,7 +21,7 @@ export default {
         usr: this.usr,
         psw: this.psw
       }
-      fetch('http://trading-api.gustavbergh.me/register', {
+      fetch('https://trading-api.gustavbergh.me/register', {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',

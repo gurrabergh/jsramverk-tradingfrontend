@@ -2,9 +2,9 @@
 <v-app>
 <h1>Logga in</h1>
 <v-form>
-  <v-text-field name="Username" label="E-mail" v-model="usr"></v-text-field>
-            <v-text-field name="Password" label="Lösenord" type="password" v-model="psw"></v-text-field>
-              <v-btn v-on:click="submitted" primary large block>Login</v-btn>      <v-btn
+  <v-text-field id="usr" label="Användarnamn" v-model="usr"></v-text-field>
+            <v-text-field id="psw" label="Lösenord" type="password" v-model="psw"></v-text-field>
+              <v-btn id="login" v-on:click="submitted" primary large block>Login</v-btn>      <v-btn
               color="blue"
               dark
               large
@@ -32,7 +32,7 @@ export default {
         usr: this.usr,
         psw: this.psw
       }
-      fetch('http://trading-api.gustavbergh.me/login', {
+      fetch('https://trading-api.gustavbergh.me/login', {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',

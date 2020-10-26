@@ -16,7 +16,7 @@
           v-model="group"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item @click="$router.push('/account')">
+          <v-list-item id="accNav" @click="$router.push('/account')">
             <v-list-item-title>Konto</v-list-item-title>
           </v-list-item>
 

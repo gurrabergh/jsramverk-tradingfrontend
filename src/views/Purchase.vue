@@ -65,7 +65,7 @@ export default {
         portfolio: acc.portfolio,
         balance: balance
         }
-        fetch('http://trading-api.gustavbergh.me/purchase', {
+        fetch('https://trading-api.gustavbergh.me/purchase', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',

@@ -6,6 +6,7 @@
               x-large
               color="success"
               dark
+              id="login"
               @click="$router.push('login')" 
             >
               Logga in
@@ -13,7 +14,8 @@
       <v-btn
               color="gray"
               dark
-              large
+              x-large
+              id="register"
               @click="$router.push('register')" 
             >
               Registrera dig
@@ -40,6 +42,14 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+</style>
+<style scoped>
+
+.v-btn {
+  margin: 2rem auto;
+  width: 40%;
+  display: block;
 }
 
 </style>
