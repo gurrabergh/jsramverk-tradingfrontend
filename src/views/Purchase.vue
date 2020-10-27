@@ -52,12 +52,11 @@ export default {
         if (index === -1) {  
             acc.portfolio.push({name: this.stockName, amount: this.amount, price: this.price})
           } else {
-            let sum1 = acc.portfolio[index].amount * acc.portfolio[index].price
-            let sum2 = this.price * this.amount
-            let gav = (sum1 + sum2) / (this.amount + acc.portfolio[index].amount)
+            let sum1 = parseInt(acc.portfolio[index].amount) * parseFloat(acc.portfolio[index].price)
+            let sum2 = parseFloat(this.price) * parseFloat(this.amount)
+            let gav = (sum1 + sum2) / (parseInt(this.amount) + parseInt(acc.portfolio[index].amount))
             acc.portfolio[index].amount = parseInt(acc.portfolio[index].amount) + parseInt(this.amount)
             acc.portfolio[index].price = gav
-            console.log('fanns')
           }
         let data = {
         stock: this.$route.params.stock,
